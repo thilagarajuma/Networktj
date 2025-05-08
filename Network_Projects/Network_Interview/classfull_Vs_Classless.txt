@@ -1,0 +1,202 @@
+What is 3 trier architecture component of Checkpoint Firewall.
+a) Smart Console.
+b) Security Management.
+c) Security Gateway.
+
+
+What is the Packet Flow of Checkpoint firewall.
+1. SAM Database.
+2. Address Spoofing.
+3. Session Lookup.
+4. Policy Lookup.
+5. Destination NAT.
+6. Route Lookup.
+7. Source NAT.
+8. Layer 7 Inspection.
+9. VPN.
+10. Routing.
+
+What Is Anti-spoofing?
+Anti-Spoofing is the feature of Checkpoint Firewall. which is protect from attacker who generate IP Packet with Fake or Spoof source address. Its determine that whether traffic is legitimate or not. If traffic is not legitimate then firewall block that traffic on interface of firewall
+
+
+What Is Stealth Rule In Checkpoint Firewall?
+Stealth Rule Protect Checkpoint firewall from direct access any traffic. Its rule should be place on the top of Security rule base. In this rule administrator denied all traffic to access checkpoint firewall.
+
+
+
+What Is Cleanup Rule In Checkpoint Firewall?
+Cleanup rule place at last of the security rule base, Its used to drop all traffic which not match with above rule and Logged. Cleanup rule mainly created for log purpose. In this rule administrator denied all the traffic and enable log.
+
+What Is Explicit Rule In Checkpoint Firewall?
+It's a rule in ruse base which is manually created by network security administrator that called Explicit rule.
+
+
+What Is Hide Nat?
+Hide NAT used to translate multiple private IP or Network with single public IP address. Means many to one translation. Its can only be used in source NAT translation. Hide NAT can not be used in Destination NAT.
+
+
+
+What Is Ip Sec?
+IP Sec (IP Security) is a set of protocol. which is responsible for make secure communication between two host machine, or network over public network such as Internet. IPSec Protocol provide Confidentiality , Integrity, Authenticity and Anti Replay protection. There is two IPSec protocol which provide security
+ESP (Encapsulation Security Payload)
+AH (Authentication Header).
+
+
+
+What Is Sic?
+SIC stand for “Secure Internal Communication”. Its a checkpoint firewall feature that is used to make secure communication between Checkpoint firewall components. Its used when Security Gateway and Security management server installed in Distributed deployment. Its Authentication and Encryption for secure communication.
+
+
+
+What Is Smart Dashboard?
+Its tool of smart console. Its used to Configure Rule, Policy object, Create NAT Policy, Configure VPN and Cluster.
+Which Of The Applications In Check Point Technology Can Be Used To View Who And What The Administrator Does To The Security Policy?
+SmartView Tracker
+
+
+
+Advantages Of Nat?
+Save Public IP to save cost.
+Security will hide the Internal Network.
+Avoid Routing.
+Publish Server over Internet.
+Overlapping Network.
+Access Internet from Private IP address.
+
+
+
+
+                                              NEXUS QUESTIONS:
+
+====================================================================================
+
+
+Q. What is vPC and what are its benefits?
+
+A. Virtual PortChannel (vPC) is a port-channeling concept that extends link aggregation to two separate physical switches.
+Benefits of vPC include:
+Utilizes all available uplink bandwidth
+Allows the creation of resilient Layer 2 topologies based on link aggregation
+Eliminates the dependence of Spanning Tree Protocol in Layer 2 access distribution layer(s)
+Enables transparent server mobility and server high availability (HA) clusters
+Scales available Layer 2 bandwidth
+Simplifies network design
+Dual-homed servers can operate in active-active mode
+Faster convergence upon link failure
+Improves convergence time when a single device fails
+Reduces capex and opex
+
+Q. What are orphan ports?
+
+A. Orphan ports are single attached devices that are not connected via a vPC, but still carry vPC VLANs. In the instance of a peer-link shut or restoration, an orphan port's connectivity may be bound to the vPC failure or restoration process. Issue the show vpc orphan-ports command in order to identify the impacted VLANs.
+
+Q. What is the command used to verify the "HSRP Active State" on a Nexus 7000 Series Switch?
+
+A. The command is show hsrp active or show hsrp brief .
+
+Q. Does the Cisco Nexus 5548P support Layer 3 routing?
+A. Yes. The Cisco Nexus 5500 Platform has been designed with Layer 3 support from the start. At FCS, Layer 3routing will not be available on the Cisco Nexus 5548P and will be enabled in the near future through a fieldupgradeable daughter card.
+
+Q. What is OTV?
+Q. Can a Nexus 7000 be a DHCP server and can it relay DHCP requests to different DHCP servers per VLAN?
+
+
+
+A. The Nexus 7000 does not support a DHCP server, but it does support DHCP relay. For relay, use the ip dhcp relay address 
+
+Q. How many syslog servers can be added to a Nexus 7000 Series Switch?
+
+
+
+A. The maximum number of syslog servers configured is 3.
+
+===============================================================================================
+
+
+                                            ROUTING & SWITCHING QUESTIONS:
+
+===============================================================================================
+
+Q.What is the difference between Classless and Classfull routing?
+
+A.Classfull routing does not advertise subnet mask information along with the network prefix while classless routing does.
+
+Q.In a network of routers and switches, what is the difference between routing and switching?
+A.Switching make the final ultimate delivery while routing select the best available path in a network.
+
+Q.What is private vlan used for?
+A.Private vlan is a concept in vlan you can have vlans in a single vlan. It is used in where hundreds of vlans are configured. You only need to make one vlan and all other vlans in this vlan.
+
+Q.Explain Stuck in active ?
+A.If the successor path is lost & there is no feasible successor path is available, router sends out query messages on all EIGRP enable interfaces & tries to find out an alternative path to the network. It is active state for that route.
+
+Now Router is waiting for reply from its neighbors. If reply is missing for 3 min, dat means router didn't get any reply from neighbors, then it becomes stuck in active. 
+
+In this case, the router reset the neighbor relationship with the router who didn't replied back the query messages sent by the router.
+
+To solve this problem, two method is used - 
+
+a) Router summarization
+b) EIGRP Stub.
+
+To disbale the stuck in active timer, the following command is used - 
+
+Router(config-router)# timers active-time disable.
+
+Q. Which routes will be preferred static or connected ? What is the AD for both ?
+
+Q.What is the purpose of the WEIGHT attribute on OSPF?
+A. There is no attribute such as WEIGHT in OSPF
+
+Q.Type of LSA ?
+
+Q.Difference between passive and active ftp ?
+
+Q.Checks to be done of ftp is not working ?
+
+Q. Port no for snmp ? udp or tcp ?
+Q. What is ISL trunking ?
+
+Q.
+ What is VSL ?
+Q. How DHCP works ? Messages flow ?
+
+
+F5 Questions :
+
+* What is Server Load Balancing?
+Server Load Balancing (SLB) provides network performance and content delivery by implementing a series of algorithms and priorities to respond to the specific requests made to the network. In simple terms, SLB distributes clients to a group of servers and ensures that clients are not sent to failed servers.
+*What is Health Check in refer to load balancer ?
+The Health Check feature of the load balancer that allows you to set parameters to perform diagnostic observations on the performance of web servers and web server farms associated with each appliance. Health checking allows you to determine if a particular server or service is running or has failed. When a service fails health checks, the SLB algorithm will stop sending clients to that server until the service passes health checks again.
+ *When load balancing to a real server, which server will be accessed first?
+This depends on the load balancing method that you select. Here are a few examples:
+Least connections (lc) method " The real server with the lowest number of concurrent connections will receive the first connection. 
+Round robin (rr) method " The real server with the lowest entry index will get the first connection. 
+Shortest response (sr) " The loadbalancer or appliance will establish connections with each server and calculate the round trip time. The client connection will go to the real server with the lowest response time.
+
+*If no pool is mapped to VIP and its status is Down. Will we be able to ping that IP ?
+Yes
+*Why Datagroup and Irule is required
+
+*Describe the process of making a TCP connection from a browser to a server through routers, switches, and a load balancer
+* Explain Persistence
+Cookie persistence uses an HTTP cookie stored on a client’s computer to allow the client to reconnect to the same server previously visited at a web site.
+*Explain one connect
+When a client makes a new connection to a BIG-IP virtual server with an associated OneConnect profile, and the Secure Network Address Translation option is set to either SNAT or Automap, the BIG-IP system parses the HTTP request, selects a server using the load-balancing method defined in the pool, translates the source IP address in the request to the SNAT IP address, and creates a connection to the server. When the client's initial HTTP request is complete, the BIG-IP system temporarily holds the connection open and makes the idle TCP connection to the pool member available for reuse. When a new connection is initiated to the virtual server, the BIG-IP system performs SNAT address translation on the source IP address, and then applies the OneConnect source mask to the translated SNAT IP address to determine whether it is eligible to reuse an existing idle connection.
+* SSL Offloading
+SSL offloading relieves a Web server of the processing burden of encrypting and/or decrypting traffic sent via SSL, the security protocol that is implemented in every Web browser. The processing is offloaded to a separate device designed specifically to perform SSL acceleration or SSL termination.
+*Difference between SSL offloading and SSL termination
+SSL offloading  >>  Mentioned Above
+SSL Termination >> SSL termination refers to the process that occurs at the server end of an SSL connection, where the traffic transitions between encrypted and unencrypted forms.
+*Uses of FastL4 profile ?
+It means that you can't be trying to process anything above Layer 4. So no iRules, no header insertions, no cookie persistence, etc. 
+
+But, on a virtual server that does not require any Layer 7 decision-making, using the FastL4 profile will cause the connection to be processed in the PVA (the Packet Velocity Accelerator ASIC on LTM) and can give you greater performance. 
+
+
+
+
+
+
+

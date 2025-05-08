@@ -1,0 +1,126 @@
+### **📌 Types of ARP (Address Resolution Protocol)**  
+
+ARP is used to **map an IP address to a MAC address** in a local network. There are different types of ARP used for different purposes:  
+
+---
+
+## **🔹 1. Normal (Standard) ARP**  
+**➡️ Used for:** Resolving IP to MAC addresses in the local network.  
+- When a device wants to communicate with another device **in the same subnet**, it sends a **broadcast ARP request** asking for the MAC address of the target IP.  
+- The target device responds with its **MAC address**.  
+
+🔹 **Example (ARP Request & Reply):**  
+```
+PC1: "Who has 192.168.1.10? Tell me your MAC!" (Broadcast)
+PC2: "192.168.1.10 is at AA:BB:CC:DD:EE:FF" (Unicast Response)
+```
+
+📌 **Packet Details:**  
+- **Source IP:** Requester’s IP (e.g., 192.168.1.1)  
+- **Destination IP:** Target IP (e.g., 192.168.1.10)  
+- **Source MAC:** Requester’s MAC (e.g., 00:11:22:33:44:55)  
+- **Destination MAC:** FF:FF:FF:FF:FF:FF (Broadcast)  
+
+---
+
+## **🔹 2. Gratuitous ARP (GARP)**  
+**➡️ Used for:** Duplicate IP detection & MAC address update.  
+- A device **announces its own IP & MAC address** to the entire network.  
+- Helps in **IP conflict detection** and **updating ARP caches** on other devices.  
+
+🔹 **Example:**  
+```
+PC1: "192.168.1.1 is at 00:11:22:33:44:55" (Broadcast)
+```
+
+📌 **Use Cases:**  
+✅ **IP conflict detection** (If another device responds, there's a conflict).  
+✅ **Update ARP caches** (E.g., in case of NIC changes or failover scenarios).  
+✅ **Load balancers & VRRP (Virtual Router Redundancy Protocol)** to advertise virtual IPs.  
+
+---
+
+## **🔹 3. Reverse ARP (RARP) [Deprecated]**  
+**➡️ Used for:** Getting an **IP address** when only a **MAC address** is known.  
+- Used in **diskless workstations** or old network devices **without a configured IP**.  
+- **RARP server** assigns an IP based on the device's MAC.  
+- **Replaced by DHCP today**.  
+
+🔹 **Example:**  
+```
+Device: "I have MAC AA:BB:CC:DD:EE:FF, what is my IP?"  
+RARP Server: "Your IP is 192.168.1.100"
+```
+
+📌 **Obsolete – replaced by DHCP!** 🚫  
+
+---
+
+## **🔹 4. Proxy ARP**  
+**➡️ Used for:** Helping devices communicate when they **believe they are in the same subnet but are not**.  
+- A **router or firewall** replies to an ARP request on behalf of another device.  
+- It tricks the sender into thinking the destination is on the same network.  
+- Used in **legacy networks, VPNs, or NAT scenarios**.  
+
+🔹 **Example:**  
+```
+PC1: "Who has 192.168.2.10?" (Broadcast)
+Router (Proxy ARP): "192.168.2.10 is at 00:AA:BB:CC:DD:EE" (Router's MAC)
+```
+📌 **Use Cases:**  
+✅ **Inter-VLAN communication without routing**.  
+✅ **NAT environments where the router acts as a proxy**.  
+✅ **VPNs to allow clients to appear on the same subnet**.  
+
+---
+
+## **🔹 5. Inverse ARP (InARP)**  
+**➡️ Used for:** Finding the **IP address** of a device when only its **MAC (or DLCI) is known**.  
+- Used in **Frame Relay & ATM networks** to automatically map Layer 2 to Layer 3.  
+- Opposite of normal ARP (**MAC to IP resolution instead of IP to MAC**).  
+
+🔹 **Example:**  
+```
+Router: "I know your DLCI (or MAC), but what is your IP?"
+Remote Device: "My IP is 192.168.1.200"
+```
+
+📌 **Mostly obsolete, replaced by modern WAN protocols!** 🚫  
+
+---
+
+## **🔹 6. Dynamic ARP Inspection (DAI) [Security Feature]**  
+**➡️ Used for:** Preventing **ARP spoofing** (Man-in-the-Middle attacks).  
+- Switch verifies **ARP requests & replies** against a trusted database (DHCP Snooping).  
+- Blocks **spoofed ARP responses** to prevent attackers from hijacking traffic.  
+
+🔹 **Example (Attack Prevention):**  
+```
+Attacker: "192.168.1.1 is at AA:BB:CC:DD:EE:11" (Fake ARP Reply)
+Switch (DAI): "Blocked! You are not trusted."
+```
+
+📌 **Common in enterprise networks to prevent attacks!** ✅  
+
+---
+
+## **📌 Summary Table: Types of ARP**  
+
+| **ARP Type**       | **Purpose** | **Use Case** |
+|--------------------|------------|-------------|
+| **Normal ARP** | Resolves IP to MAC | Standard LAN communication |
+| **Gratuitous ARP (GARP)** | Announces MAC-IP mapping | Prevents IP conflicts, VRRP, failover |
+| **Reverse ARP (RARP)** | MAC to IP resolution | Legacy, replaced by DHCP |
+| **Proxy ARP** | Responds on behalf of another device | Helps with inter-subnet communication |
+| **Inverse ARP (InARP)** | Finds IP when MAC is known | Frame Relay, ATM networks |
+| **Dynamic ARP Inspection (DAI)** | Prevents ARP Spoofing | Network security, Enterprise networks |
+
+---
+
+## **🔹 Final Takeaways**
+✅ **Normal ARP** is the default used for IP-to-MAC resolution.  
+✅ **Gratuitous ARP** is used for **IP conflict detection & MAC updates**.  
+✅ **Reverse ARP & Inverse ARP** are **obsolete**, replaced by modern protocols.  
+✅ **Proxy ARP** is useful in **legacy or VPN/NAT networks**.  
+✅ **DAI (Dynamic ARP Inspection)** protects against **ARP spoofing attacks**.  
+

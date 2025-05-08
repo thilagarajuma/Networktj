@@ -1,0 +1,38 @@
+Sure! Let's break it down with clear definitions and examples:  
+
+### **1. Speed**  
+- Speed refers to how fast data can travel over a network.  
+- Usually measured in **Mbps (Megabits per second) or Gbps (Gigabits per second).**  
+- Think of it like the speed limit on a highway. A road with a 100 km/h speed limit allows cars to move faster than one with a 60 km/h limit.  
+
+🔹 **Example:**  
+If you have a 100 Mbps internet connection, the data packets can travel at a maximum speed of 100 Megabits per second.
+
+---
+
+### **2. Bandwidth**  
+- Bandwidth is the **maximum capacity** of a network connection.  
+- Measured in **Mbps or Gbps** (same as speed).  
+- Think of it like the number of lanes on a highway. A 4-lane highway can handle more traffic than a 2-lane highway.  
+
+🔹 **Example:**  
+A 1 Gbps internet plan means your connection **can handle up to** 1 Gigabit of data per second, but it doesn’t mean you’re always using that full capacity.
+
+---
+
+### **3. Throughput**  
+- Throughput is the **actual amount of data** that successfully travels from one point to another in a given time.  
+- Measured in **Mbps or Gbps** (like bandwidth and speed).  
+- Think of it as the actual number of cars passing through a highway per second.  
+
+🔹 **Example:**  
+Even if you have a **1 Gbps bandwidth**, if there is **network congestion, packet loss, or interference**, your actual throughput might be only **600 Mbps**.
+
+---
+
+### **Final Analogy:**  
+Imagine a highway:  
+🚗 **Speed** = How fast each car can go.  
+🛣️ **Bandwidth** = The total number of lanes on the highway.  
+🚦 **Throughput** = The actual number of cars successfully passing per second.  
+

@@ -1,0 +1,24 @@
+Here’s a short explanation of **TCP 3-way and 4-way handshakes**:
+
+---
+
+### **TCP 3-Way Handshake** (Connection Establishment):
+1. **SYN**: Client sends a SYN (synchronize) packet to the server to initiate a connection.
+2. **SYN-ACK**: Server responds with a SYN-ACK (synchronize-acknowledge) packet to acknowledge the request.
+3. **ACK**: Client sends an ACK (acknowledge) packet to confirm the connection.
+- **Result**: Connection is established, and data transfer begins.
+
+---
+
+### **TCP 4-Way Handshake** (Connection Termination):
+1. **FIN**: One side (e.g., client) sends a FIN (finish) packet to indicate it wants to close the connection.
+2. **ACK**: The other side (e.g., server) sends an ACK to acknowledge the FIN.
+3. **FIN**: The server sends its own FIN packet to close its side of the connection.
+4. **ACK**: The client sends a final ACK to confirm the termination.
+- **Result**: Connection is fully closed.
+
+---
+
+### **Summary**:
+- **3-Way Handshake**: Establishes a connection (SYN → SYN-ACK → ACK).
+- **4-Way Handshake**: Terminates a connection (FIN → ACK → FIN → ACK).

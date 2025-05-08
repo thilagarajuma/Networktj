@@ -1,0 +1,82 @@
+In the scenario where **Switch A** and **Switch B** are connected via a trunk link but have a **Native VLAN mismatch** (Switch A has Native VLAN 1, and Switch B has Native VLAN 11), the behavior of **VLAN 10, 20, and 30 traffic** depends on whether the traffic is **tagged** or **untagged**. Here's a detailed explanation:
+
+---
+
+### **Behavior of VLAN 10, 20, and 30 Traffic**
+1. **Tagged Traffic (VLAN 10, 20, 30)**:
+   - Traffic for VLANs 10, 20, and 30 is sent with an **802.1Q tag** on the trunk link.
+   - Since tagged traffic is explicitly labeled with the VLAN ID, it is **not affected by the Native VLAN mismatch**.
+   - Devices in VLAN 10, 20, and 30 on Switch A will be able to communicate with devices in the same VLANs on Switch B, as long as:
+     - The VLANs are allowed on the trunk link (`switchport trunk allowed vlan`).
+     - The VLANs exist on both switches.
+
+2. **Untagged Traffic (Native VLAN)**:
+   - Untagged traffic is affected by the Native VLAN mismatch.
+   - Switch A sends untagged traffic for Native VLAN 1, but Switch B interprets it as belonging to Native VLAN 11.
+   - As a result:
+     - Devices in VLAN 1 on Switch A will not be able to communicate with devices in VLAN 1 on Switch B.
+     - Devices in VLAN 11 on Switch B will not be able to communicate with devices in VLAN 11 on Switch A (if VLAN 11 exists on Switch A).
+
+---
+
+### **Key Points for VLAN 10, 20, and 30 Traffic**
+- **Tagged Traffic**:
+  - VLAN 10, 20, and 30 traffic is **tagged** and will **work correctly** across the trunk link, even with a Native VLAN mismatch.
+  - The mismatch only affects **untagged traffic** (Native VLAN).
+
+- **Untagged Traffic**:
+  - If any device connected to the trunk link sends untagged traffic (e.g., a device configured for the Native VLAN), it will be misassigned to the wrong VLAN due to the mismatch.
+  - For example:
+    - A device in VLAN 1 on Switch A sends untagged traffic, which Switch B misassigns to VLAN 11.
+    - A device in VLAN 11 on Switch B sends untagged traffic, which Switch A misassigns to VLAN 1.
+
+---
+
+### **Impact on Network Communication**
+1. **VLAN 10, 20, and 30**:
+   - Communication between devices in these VLANs will **work normally** because the traffic is tagged and not affected by the Native VLAN mismatch.
+
+2. **Native VLAN (VLAN 1 and VLAN 11)**:
+   - Communication between devices in the Native VLANs will **fail** due to the mismatch.
+   - Devices in VLAN 1 on Switch A will not be able to communicate with devices in VLAN 1 on Switch B.
+   - Devices in VLAN 11 on Switch B will not be able to communicate with devices in VLAN 11 on Switch A.
+
+3. **STP (Spanning Tree Protocol)**:
+   - STP BPDUs are sent untagged and belong to the Native VLAN.
+   - A mismatch in the Native VLAN can cause STP to fail, potentially leading to network loops or instability.
+
+---
+
+### **How to Fix the Issue**
+1. **Ensure Consistent Native VLAN Configuration**:
+   - Configure the same Native VLAN on both ends of the trunk link.
+   - Example configuration on Switch A:
+     ```bash
+     interface GigabitEthernet0/1
+      switchport mode trunk
+      switchport trunk native vlan 11
+     ```
+
+2. **Avoid Using VLAN 1**:
+   - For security reasons, avoid using VLAN 1 as the Native VLAN. Instead, use an unused VLAN ID (e.g., VLAN 11 in this case).
+
+3. **Verify VLAN Configuration**:
+   - Ensure that VLANs 10, 20, and 30 are allowed on the trunk link on both switches.
+   Example:
+   ```bash
+   interface GigabitEthernet0/1
+    switchport mode trunk
+    switchport trunk allowed vlan 10,20,30
+   ```
+
+4. **Test Connectivity**:
+   - After fixing the mismatch, test connectivity between devices in the same VLAN across the trunk link.
+
+---
+
+### **Summary**
+- **VLAN 10, 20, and 30 traffic** will **work correctly** because it is tagged and not affected by the Native VLAN mismatch.
+- **Native VLAN traffic** (VLAN 1 and VLAN 11) will **fail** due to the mismatch.
+- To resolve the issue, ensure the **Native VLAN is consistent** on both ends of the trunk link and avoid using VLAN 1 for security reasons.
+
+By fixing the Native VLAN mismatch, you can ensure proper communication for all VLANs and maintain a stable and secure network.

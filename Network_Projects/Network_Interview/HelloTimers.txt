@@ -1,0 +1,65 @@
+Here's the list of routing protocol timers in text format without tables:
+
+---
+
+### **1. Distance Vector Protocol Timers (RIP, EIGRP)**
+
+- **Update Timer**: The time interval between periodic routing updates.  
+  - **RIP**: 30 sec
+
+- **Invalid Timer**: The time before a route is declared invalid if no updates are received.  
+  - **RIP**: 180 sec  
+  - **EIGRP**: 3 × Hello Timer
+
+- **Hold-Down Timer**: The time to suppress updates for an unreachable route to avoid flapping.  
+  - **RIP**: 180 sec  
+  - **EIGRP**: 3 × Hello Timer
+
+- **Flush Timer**: The time before removing an invalid route from the routing table.  
+  - **RIP**: 240 sec  
+  - **EIGRP**: 3 × Hold Timer
+
+- **Hello Timer**: The time between Hello packets for neighbor discovery.  
+  - **EIGRP**: 5 sec (LAN) / 60 sec (WAN)
+
+---
+
+### **2. Link-State Protocol Timers (OSPF, IS-IS)**
+
+- **Hello Timer**: The time interval between Hello packets for neighbor discovery.  
+  - **OSPF**: 10 sec (Broadcast) / 30 sec (NBMA)  
+  - **IS-IS**: 10 sec
+
+- **Dead Timer**: The time before declaring a neighbor dead if no Hello packets are received.  
+  - **OSPF**: 40 sec (Broadcast) / 120 sec (NBMA)  
+  - **IS-IS**: 30 sec
+
+- **LSA (Link-State Advertisement) Refresh Timer**: The time to refresh LSAs in the Link-State Database (LSDB).  
+  - **OSPF**: 30 minutes
+
+- **LSA Hold Timer**: The delay between flooding the same LSA to prevent redundant transmissions.  
+  - **OSPF**: 5 sec
+
+- **SPF Calculation Delay Timer**: The time delay before running the SPF algorithm again after a topology change.  
+  - **OSPF**: 5 sec
+
+---
+
+### **3. Path Vector Protocol Timers (BGP)**
+
+- **Keepalive Timer**: The time interval between keepalive messages to maintain the BGP neighbor connection.  
+  - **Default**: 60 sec
+
+- **Hold Timer**: The time before declaring a BGP neighbor down if no keepalive message is received.  
+  - **Default**: 180 sec (3 × Keepalive Timer)
+
+- **Route Advertisement Interval**: The minimum time before advertising the same route again.  
+  - **iBGP**: 5 sec  
+  - **eBGP**: 30 sec
+
+- **Route Flap Dampening Timer**: The time to suppress unstable routes to avoid route flapping.  
+  - **Default**: Half-life = 15 minutes, Max suppression = 60 minutes
+
+---
+
+This text format provides the essential information about the timers for various routing protocols. Let me know if you'd like any more details!

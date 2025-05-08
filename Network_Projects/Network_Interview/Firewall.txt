@@ -1,0 +1,92 @@
+### **Types of Firewall Architectures**  
+
+Firewalls can be deployed in different **architectural models** based on security requirements, scalability, and redundancy. Here are the **main firewall architectures** used in enterprise networks:  
+
+---
+
+## **1️⃣ Single-Tier Architecture (Flat Network)**  
+- A basic setup where a **single firewall** sits between the internal network and the internet.  
+- Used in **small offices** or **branch networks**.  
+- No segmentation; all traffic goes through a single firewall.  
+
+✅ **Pros:**  
+✔️ Simple and easy to manage.  
+✔️ Low cost.  
+
+❌ **Cons:**  
+❌ No internal segmentation → If breached, the entire network is exposed.  
+❌ Not scalable for large networks.  
+
+✅ **Example Deployment:**  
+🔹 A single **Check Point, Palo Alto, or Cisco ASA** firewall protecting a small office.  
+
+---
+
+## **2️⃣ Two-Tier Architecture (DMZ-Based)**  
+- Uses **two firewalls** or **firewall zones** to separate public, private, and DMZ (Demilitarized Zone) networks.  
+- Public-facing services (e.g., web servers, mail servers) are placed in the **DMZ**.  
+- Internal traffic stays protected behind a second firewall.  
+
+✅ **Pros:**  
+✔️ Better security with **internal network isolation**.  
+✔️ Protects public-facing services separately.  
+
+❌ **Cons:**  
+❌ Slightly more complex than single-tier.  
+❌ More expensive due to additional firewall requirements.  
+
+✅ **Example Deployment:**  
+🔹 **Check Point Security Gateway + SMS** managing **DMZ & Internal zones**.  
+🔹 **Palo Alto Zones** → External, DMZ, and Trust networks.  
+
+---
+
+## **3️⃣ Three-Tier Architecture (Enterprise Model)**  
+- Separates security into three layers:  
+  1️⃣ **Perimeter Firewall** – Protects the external edge (internet).  
+  2️⃣ **DMZ Firewall** – Secures public services like web and mail servers.  
+  3️⃣ **Internal Firewall** – Protects sensitive internal networks (databases, corporate LANs).  
+- Used in **large enterprises, data centers, and cloud environments**.  
+
+✅ **Pros:**  
+✔️ **Maximum security** with multi-layer protection.  
+✔️ Prevents **lateral movement** in case of a breach.  
+✔️ **Scalable** for large networks.  
+
+❌ **Cons:**  
+❌ Complex to manage.  
+❌ Higher hardware and licensing costs.  
+
+✅ **Example Deployment:**  
+🔹 **Check Point:** 3-tier **Security Gateways** managed by a **SmartCenter Server**.  
+🔹 **Palo Alto:** Perimeter PA-5250, DMZ PA-3220, Internal PA-220 managed via **Panorama**.  
+
+---
+
+## **4️⃣ Distributed Firewall Architecture (Zero Trust)**  
+- Firewalls are deployed **at every key point** in the network (perimeter, branch offices, cloud).  
+- Uses **micro-segmentation** to protect workloads.  
+- Common in **cloud-native and SD-WAN deployments**.  
+
+✅ **Pros:**  
+✔️ **Granular security** at every level.  
+✔️ **Better cloud & remote access protection**.  
+✔️ Ideal for **hybrid cloud & multi-cloud** environments.  
+
+❌ **Cons:**  
+❌ High complexity & operational overhead.  
+❌ Requires **centralized management (e.g., Panorama, SmartConsole, FortiManager)**.  
+
+✅ **Example Deployment:**  
+🔹 **Check Point CloudGuard + On-Prem Gateways**.  
+🔹 **Palo Alto Prisma Access + Physical Firewalls**.  
+
+---
+
+## **🔥 Which Architecture Should You Use?**  
+- **Small business?** → **Single-Tier** (One Firewall).  
+- **Enterprise with public-facing servers?** → **Two-Tier (DMZ-Based)**.  
+- **Large corporate networks & data centers?** → **Three-Tier (Perimeter, DMZ, Internal)**.  
+- **Cloud & SD-WAN environments?** → **Distributed Firewall (Zero Trust Model)**.  
+
+Would you like **a network diagram for each architecture?** 🚀

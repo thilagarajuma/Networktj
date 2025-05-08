@@ -1,0 +1,112 @@
+### **Link-State vs Distance Vector Routing Protocols**  
+
+Routing protocols are classified into **Link-State** and **Distance Vector** based on how they learn and share routing information.  
+
+---
+
+## **1️⃣ Distance Vector Protocols**  
+📌 **Concept:**  
+- Each router learns routes from its **directly connected neighbors** and forwards only the **best route (vector) to destinations**.  
+- Uses the **Bellman-Ford algorithm** for path selection.  
+- Sends periodic updates to neighbors **even if no topology changes** (wastes bandwidth).  
+
+📌 **Key Features:**  
+✅ Simple to configure  
+✅ Uses **hop count or metric** to decide the best path  
+✅ **Periodic updates** (even if no changes)  
+❌ **Slow convergence** (prone to loops)  
+❌ Uses **split horizon & hold-down timers** to prevent loops  
+
+📌 **Examples of Distance Vector Protocols:**  
+🔹 **RIP** (Routing Information Protocol) – Max **15 hops**  
+🔹 **EIGRP** (Cisco proprietary, hybrid but mainly Distance Vector)  
+
+---
+
+## **2️⃣ Link-State Protocols**  
+📌 **Concept:**  
+- Each router **builds a complete map** (topology) of the network.  
+- Uses the **Dijkstra’s Shortest Path First (SPF) algorithm** to find the best route.  
+- Routers **only send updates when topology changes** (not periodic).  
+
+📌 **Key Features:**  
+✅ **Faster convergence** than Distance Vector  
+✅ **More efficient updates** (only when changes occur)  
+✅ **Loop-free by design** (no need for hold-down timers)  
+❌ **More CPU & memory usage** (stores full topology)  
+❌ Complex to configure  
+
+📌 **Examples of Link-State Protocols:**  
+🔹 **OSPF (Open Shortest Path First)**  
+🔹 **IS-IS (Intermediate System to Intermediate System)**  
+
+---
+
+## **🔀 Key Differences:**
+| Feature | **Distance Vector** | **Link-State** |
+|---------|-------------------|-------------|
+| **Algorithm** | Bellman-Ford | Dijkstra SPF |
+| **Routing Information** | Sends only best path to neighbors | Sends full topology updates |
+| **Update Type** | Periodic updates | Event-driven updates |
+| **Convergence Speed** | **Slow** (prone to loops) | **Fast** (loop-free) |
+| **Resource Usage** | **Low CPU & Memory** | **High CPU & Memory** |
+| **Loop Prevention** | Split Horizon, Hold Timers | Naturally loop-free |
+| **Best for** | Small networks | Large, scalable networks |
+| **Examples** | RIP, EIGRP | OSPF, IS-IS |
+
+---
+
+## **🌟 Hybrid Protocol: EIGRP**
+- **EIGRP** is considered a **hybrid protocol** because it has **Distance Vector characteristics** (relies on neighbors for updates) and **some Link-State features** (stores partial topology info).  
+
+---
+
+## **🛠 When to Use?**
+✔ **Use Distance Vector** for **small networks** with low CPU/memory needs.  
+✔ **Use Link-State** for **large networks** (enterprise, ISPs) with complex topologies.  
+✔ **Use EIGRP** if using **Cisco-only** networks needing **fast convergence**.  
+
+Would you like a real-world example or configuration? 🚀
+
+### **Is BGP a Path Vector Protocol?** ✅ Yes!  
+
+BGP (**Border Gateway Protocol**) is classified as a **Path Vector** protocol, which is an advanced form of a Distance Vector protocol.  
+
+---
+
+## **🔍 What is a Path Vector Protocol?**  
+A **Path Vector protocol** maintains the **entire path (AS Path)** a route takes, rather than just the distance (like RIP) or full topology (like OSPF).  
+
+📌 **Key Features of Path Vector Protocols:**  
+✅ Instead of hop count, it uses the **AS Path** (list of Autonomous Systems) to avoid loops.  
+✅ Uses multiple **attributes** (e.g., AS-Path, Local Preference, MED) for best path selection.  
+✅ Updates **only when topology changes** (like Link-State).  
+✅ **No full topology knowledge** – only the best path from each neighbor.  
+
+---
+
+## **🔀 How is BGP Different from Distance Vector & Link-State?**
+| Feature | **Distance Vector** | **Link-State** | **Path Vector (BGP)** |
+|---------|-------------------|-------------|----------------|
+| **Algorithm** | Bellman-Ford | Dijkstra SPF | Path Vector Algorithm |
+| **Routing Information** | Best path only | Full topology | AS Path & Attributes |
+| **Loop Prevention** | Hold-down, Split Horizon | Naturally loop-free | AS-Path (rejects routes with its own AS) |
+| **Update Type** | Periodic | Event-driven | Event-driven |
+| **Convergence Speed** | **Slow** | **Fast** | **Slow** (but stable) |
+| **Best for** | Small networks | Large internal networks | Internet-scale routing |
+| **Examples** | RIP, EIGRP | OSPF, IS-IS | BGP |
+
+---
+
+## **🛠 Why Does BGP Use Path Vector?**
+1️⃣ **Scalability** – BGP operates across the **entire Internet**, so it cannot store full topology like OSPF.  
+2️⃣ **Loop Prevention** – Uses the **AS-Path** attribute to prevent routing loops.  
+3️⃣ **Policy-Based Routing** – Allows ISPs and enterprises to control traffic using **attributes** like Local Preference & MED.  
+
+---
+
+### **🚀 Conclusion**
+✅ **BGP is a Path Vector Protocol** because it maintains the full **AS Path** instead of only the best metric (like Distance Vector) or full topology (like Link-State).  
+✅ It is designed for **large-scale routing** across different networks (ISPs, enterprises, etc.).  
+
+Would you like a breakdown of BGP attributes or best path selection rules? 🚀

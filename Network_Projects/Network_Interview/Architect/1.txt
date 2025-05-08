@@ -1,0 +1,41 @@
+
+Here’s a good format to follow:
+
+    Context – What was the client’s need or challenge?
+
+    Suggestion – What product/solution did you recommend?
+
+    Why – What were the benefits (technical + business)?
+
+    Outcome – What was the result after implementation?
+
+🧠 Example Answer (Network Engineer Style)
+
+    "Yes, I’ve recommended products to clients based on their needs. One example was when a client was struggling with VPN scalability and reliability during remote work expansion. I suggested implementing Palo Alto GlobalProtect instead of continuing with their outdated IPSec VPN client."
+
+    Why? It provided better user experience, integrated well with their existing Palo Alto firewall, allowed split-tunneling, and had SAML support for Okta integration.
+
+    Outcome: After deploying GlobalProtect, helpdesk VPN tickets dropped by over 60%, and remote access became faster and more secure. The client later thanked us and extended the same setup across multiple sites.
+
+Another Example (Visibility & Monitoring)
+
+    "Another time, I suggested using Datadog Network Performance Monitoring to a client with visibility issues in their hybrid cloud setup. They had no insight into east-west traffic, and troubleshooting took hours."
+
+    I explained how Datadog could give them real-time flow visibility, alerts, and historical performance trends."
+
+    After deploying it, their MTTR dropped significantly, and the network team was able to proactively catch issues before users noticed."
+
+    Yes, I’ve recommended several solutions to clients based on their needs and pain points. One example that stands out was when a client was facing issues with monitoring SSL certificate expiry across multiple public-facing applications. They had no centralized way to track expiry, and had experienced a few outages due to expired certs."
+
+    Solution I Suggested:
+    I recommended implementing Datadog's SSL Certificate Monitoring. It allowed them to monitor all their external certs in one place, set up alerts for expiry thresholds, and integrate it with Slack and email for instant notifications.
+
+    Why This Helped:
+
+    Provided early warnings before certs expired.
+
+    Reduced manual effort spent on checking individual certs.
+
+    Prevented downtime caused by unexpected expiry.
+
+    Integrated smoothly with their existing Datadog setup

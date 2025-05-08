@@ -1,0 +1,58 @@
+### **Difference Between Active and Passive FTP**  
+
+📌 **Overview:**  
+FTP (File Transfer Protocol) uses **two channels**:  
+1️⃣ **Control Channel** (for commands and responses)  
+2️⃣ **Data Channel** (for actual file transfers)  
+
+The key difference between **Active** and **Passive** FTP is **how the data connection is established** between the client and the server.  
+
+---
+
+### **1️⃣ Active FTP (Default Mode)**
+- **Client initiates** the control connection to the server on **port 21**.  
+- **Server initiates** the data connection **from port 20** to the **client’s random high port**.  
+- **Issue:** If the client is behind a firewall/NAT, the connection may be blocked because the server is trying to initiate a connection to the client.  
+
+✅ **Best for:** Public servers with **no NAT/firewall restrictions**.  
+
+📌 **Example Connection Flow (Active FTP)**  
+1️⃣ Client → Server: **Connects to TCP port 21** (Control Channel).  
+2️⃣ Client → Server: **Sends PORT command** (Tells server where to connect for data).  
+3️⃣ Server → Client: **Initiates data connection from port 20** to the client's specified port.  
+4️⃣ Data transfer begins.  
+
+---
+
+### **2️⃣ Passive FTP (Firewall/NAT-Friendly)**
+- **Client initiates** both the **control** and **data connections** to the server.  
+- **Server does NOT initiate** any connections back to the client.  
+- The server tells the client which port it should connect to for data transfer using a **PASV command**.  
+
+✅ **Best for:** Clients behind **firewalls and NAT** (e.g., corporate networks, home users).  
+
+📌 **Example Connection Flow (Passive FTP)**  
+1️⃣ Client → Server: **Connects to TCP port 21** (Control Channel).  
+2️⃣ Client → Server: **Sends PASV command** (Requests a passive data connection).  
+3️⃣ Server → Client: **Responds with a random high port**.  
+4️⃣ Client → Server: **Initiates data connection to the specified port**.  
+5️⃣ Data transfer begins.  
+
+---
+
+### **🔥 Key Differences Between Active & Passive FTP**
+| Feature            | Active FTP                          | Passive FTP                        |
+|--------------------|----------------------------------|----------------------------------|
+| **Data Connection** | Server → Client (from port 20) | Client → Server (random high port) |
+| **Firewall-Friendly?** | ❌ No, often blocked by NAT/firewalls | ✅ Yes, works with NAT/firewalls |
+| **Control Channel** | Always client to server (port 21) | Always client to server (port 21) |
+| **Security Risk?** | Higher (Server initiates connection) | Lower (Client initiates connection) |
+| **Used In?** | Public servers with open networks | Corporate & home networks with firewalls |
+
+---
+
+### **💡 When to Use Active vs. Passive FTP?**
+✔️ **Use Active FTP** if **both** client and server can accept incoming connections.  
+✔️ **Use Passive FTP** if **client is behind NAT/firewall** (Most common today).  
+
+Would you like a **packet capture (Wireshark example)** for better understanding? 🚀

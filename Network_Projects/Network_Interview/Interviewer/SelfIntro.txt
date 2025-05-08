@@ -1,0 +1,11 @@
+For a Job Interview / Professional Setting:
+
+"Hi, I’m Thilagaraj R. I completed my BE in Electronics and Communication Engineering in 2015.
+ Currently, I’m a Senior Network Engineer with 9+ years of experience in routing, switching,
+ load balancing, cloud networking (AWS & Azure), and network automation. I specialize in designing,
+ optimizing, and automating network infrastructures to ensure high availability and performance."
+For a Quick, Casual Introduction:
+
+"Hi, I’m Thilagaraj R, a Senior Network Engineer with 9+ years of experience in networking,
+ cloud, and automation. I have expertise in routing, switching, load balancers, AWS, Azure,
+  and automating network tasks to improve efficiency."

@@ -1,0 +1,109 @@
+**BGP Interview Preparation Guide**
+
+---
+
+### **1. Basics of BGP**
+- **What is BGP?**  
+  - Border Gateway Protocol (BGP) is an **exterior gateway protocol** used for routing between **autonomous systems (ASes)** on the internet.  
+  - It is a **path-vector protocol** that makes routing decisions based on paths, rules, and policies.
+
+- **Types of BGP**  
+  - **eBGP (External BGP)** – Between different ASes.  
+  - **iBGP (Internal BGP)** – Within the same AS.
+
+- **BGP Port Number**  
+  - **TCP Port 179**
+
+---
+
+### **2. BGP Neighbor States**
+- **Idle → Connect → Active → OpenSent → OpenConfirm → Established**  
+- **Established** is the final state where BGP peers exchange routes.
+
+---
+
+### **3. BGP Path Selection (Best Path Algorithm)**
+1. Highest **Weight** (Cisco-specific).  
+2. Highest **Local Preference**.  
+3. Prefer **Locally Originated** routes (network > aggregate > redistributed).  
+4. Shortest **AS Path**.  
+5. Lowest **Origin Type** (IGP < EGP < Incomplete).  
+6. Lowest **MED (Multi-Exit Discriminator)**.  
+7. Prefer **eBGP over iBGP** routes.  
+8. Prefer the **lowest IGP cost to next-hop**.  
+9. Oldest route (if all else is equal).  
+10. Lowest **Router ID**.  
+11. Lowest **Neighbor IP Address**.
+
+---
+
+### **4. BGP Attributes (Well-Known & Optional)**
+- **Well-Known Mandatory**: AS-Path, Next-Hop, Origin  
+- **Well-Known Discretionary**: Local Preference, Atomic Aggregate  
+- **Optional Transitive**: Community, Aggregator  
+- **Optional Non-Transitive**: MED  
+
+---
+
+### **5. Key BGP Commands**
+- **Show BGP Neighbors**  
+  ```bash
+  show ip bgp summary
+  show ip bgp neighbors
+  ```
+- **Advertise a Network**  
+  ```bash
+  router bgp <ASN>
+  network <IP> mask <MASK>
+  ```
+- **Set Local Preference**  
+  ```bash
+  route-map PREF permit 10
+  set local-preference 200
+  ```
+- **Filter Routes Using Prefix Lists**  
+  ```bash
+  ip prefix-list DENY-RANGE deny 192.168.0.0/16
+  ```
+- **Check Routes**  
+  ```bash
+  show ip bgp
+  show ip route bgp
+  ```
+
+---
+
+### **6. BGP Troubleshooting**
+- **BGP Neighbor Stuck in Active State?**  
+  - Check **TCP port 179** reachability.  
+  - Ensure correct **peer IP & AS number**.  
+  - Verify network **ACLs & firewalls**.  
+
+- **Routes Not Advertised?**  
+  - Check **network statement** & **route in RIB**.  
+  - Ensure BGP **synchronization** is disabled (old Cisco behavior).  
+  - Verify **route filtering** (prefix lists, route-maps).  
+
+- **BGP Flapping?**  
+  - Use **Route Dampening**.  
+  - Check **physical link stability**.
+
+---
+
+### **7. BGP vs Other Routing Protocols**
+| Feature  | BGP | OSPF | EIGRP |
+|----------|-----|------|------|
+| Type | Path-Vector | Link-State | Hybrid |
+| Metric | AS-Path | Cost | Composite |
+| Convergence | Slow | Fast | Fast |
+| Used For | Internet Routing | Internal Routing | Cisco-only Networks |
+
+---
+
+### **Final Tip:**
+- Focus on **BGP states, attributes, and best path selection**.  
+- Be **ready for practical scenarios** like filtering, path manipulation, and troubleshooting.
+
+---
+
+
